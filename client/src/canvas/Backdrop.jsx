@@ -1,34 +1,32 @@
 import React, { useRef } from "react";
-import { easing } from "maath";
-import { useFrame } from "@react-three/fiber";
 import { AccumulativeShadows, RandomizedLight } from "@react-three/drei";
 
 const Backdrop = () => {
-  const shadows = useRef();
+  const shadows = useRef(); // create a reference to the AccumulativeShadows component
 
   return (
     <AccumulativeShadows
-      ref={shadows}
-      temporal
-      frames={60}
-      alphaTest={0.85}
-      scale={10}
-      rotation={[Math.PI / 2, 0, 0]}
-      position={[0, 0, -0.14]}
+      ref={shadows} // set the reference to the shadows variable
+      temporal // enable temporal accumulation
+      frames={60} // set the number of frames to accumulate
+      alphaTest={0.85} // set the alpha test value for shadows
+      scale={10} // set the scale of the shadows
+      rotation={[Math.PI / 2, 0, 0]} // set the rotation of the shadows
+      position={[0, 0, -0.14]} // set the position of the shadows
     >
       <RandomizedLight
-        amount={4}
-        radius={9}
-        intensity={0.55}
-        ambient={0.25}
-        position={[5, 5, -10]}
+        amount={4} // set the number of lights to create
+        radius={9} // set the radius of the lights
+        intensity={0.55} // set the intensity of the lights
+        ambient={0.25} // set the ambient light value
+        position={[5, 5, -10]} // set the position of the lights
       />
       <RandomizedLight
-        amount={4}
-        radius={5}
-        intensity={0.25}
-        ambient={0.55}
-        position={[-5, 5, -9]}
+        amount={4} // set the number of lights to create
+        radius={5} // set the radius of the lights
+        intensity={0.25} // set the intensity of the lights
+        ambient={0.55} // set the ambient light value
+        position={[-5, 5, -9]} // set the position of the lights
       />
     </AccumulativeShadows>
   );

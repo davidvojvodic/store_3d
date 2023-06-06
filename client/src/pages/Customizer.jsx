@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSnapshot } from "valtio";
 
+// Importing custom components, functions and constants from custom files
 import config from "../config/config";
 import state from "../store";
 import { download } from "../assets";
@@ -17,20 +18,24 @@ import {
 } from "../components";
 
 const Customizer = () => {
+  // Using Valtio for state management
   const snap = useSnapshot(state);
 
+  // Setting up file picker state for image upload
   const [file, setFile] = useState("");
 
+  // Setting up state for Open AI GPT-3 functionality
   const [prompt, setPrompt] = useState("");
   const [generatingImg, setGeneratingImg] = useState(false);
 
+  // Setting up state for active editor and filter tabs
   const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState({
     logoShirt: true,
     stylishShirt: false,
   });
 
-  // show tab content depending on the activeTab
+  // Function to generate tab content based on the active tab
   const generateTabContent = () => {
     switch (activeEditorTab) {
       case "colorpicker":
@@ -51,6 +56,7 @@ const Customizer = () => {
     }
   };
 
+  // Function to handle Open AI GPT-3 submission
   const handleSubmit = async (type) => {
     if (!prompt) return alert("Please enter a prompt");
 
@@ -81,6 +87,7 @@ const Customizer = () => {
     }
   };
 
+  // Function to set state of decals
   const handleDecals = (type, result) => {
     const decalType = DecalTypes[type];
 
@@ -91,6 +98,7 @@ const Customizer = () => {
     }
   };
 
+  // Function to handle active filter tab changes
   const handleActiveFilterTab = (tabName) => {
     switch (tabName) {
       case "logoShirt":
@@ -115,12 +123,15 @@ const Customizer = () => {
     });
   };
 
+  // Function to read uploaded file
   const readFile = (type) => {
     reader(file).then((result) => {
       handleDecals(type, result);
       setActiveEditorTab("");
     });
   };
+
+  // Render method
   return (
     <AnimatePresence>
       {!snap.intro && (

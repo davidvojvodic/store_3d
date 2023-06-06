@@ -1,15 +1,18 @@
-import React from "react";
-import CustomButton from "./CustomButton";
+import React from "react"; // importing React library
+
+import CustomButton from "./CustomButton"; // importing the CustomButton component
 
 const FilePicker = ({ file, setFile, readFile }) => {
+  // creating a component called FilePicker that accepts file, setFile and readFile as props
   return (
+    // returning the following HTML/JSX content
     <div className="filepicker-container">
       <div className="flex-1 flex flex-col">
-        <input
+        <input // an input element with the following attributes
           id="file-upload"
           type="file"
           accept="image/*"
-          onChange={(e) => setFile(e.target.files[0])}
+          onChange={(e) => setFile(e.target.files[0])} // when the input is changed, set the selected file as the new value for 'file'
         />
         <label htmlFor="file-upload" className="filepicker-label">
           Upload File
@@ -20,21 +23,21 @@ const FilePicker = ({ file, setFile, readFile }) => {
       </div>
 
       <div className="mt-4 flex flex-wrap gap-3">
-        <CustomButton
+        <CustomButton // using the CustomButton component with the following props
           type="outline"
           title="Logo"
-          handleClick={() => readFile("logo")}
-          customStyles="text-sm"
+          handleClick={() => readFile("logo")} // when clicked, calls the 'readFile' function with 'logo' as argument
+          customStyles="text-sm" // custom styles in form of a className
         />
-        <CustomButton
+        <CustomButton // using the CustomButton component with the following props
           type="filled"
           title="Full"
-          handleClick={() => readFile("full")}
-          customStyles="text-sm p-2"
+          handleClick={() => readFile("full")} // when clicked, calls the 'readFile' function with 'full' as argument
+          customStyles="text-sm p-2" // custom styles in form of a className
         />
       </div>
     </div>
   );
 };
 
-export default FilePicker;
+export default FilePicker; // exporting the FilePicker component
